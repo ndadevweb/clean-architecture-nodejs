@@ -36,3 +36,5 @@ yarn add -D @types/swagger-ui-express concurrently
 
 yarn add winston
 
+
+yarn add typeorm typeorm-naming-strategies pg
