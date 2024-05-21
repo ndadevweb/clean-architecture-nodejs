@@ -2,6 +2,7 @@ import { z } from 'zod'
 import notTypeSafeConfig from './type-orm.config'
 import { DataSource } from 'typeorm'
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+import Book from './book/book.entity'
 
 const ConfigSchema = z.object({
     host: z.string().min(1),
@@ -22,7 +23,7 @@ export const AppDataSource = new DataSource({
     username: config.user,
     password: config.password,
     database: config.database,
-    entities: [],
+    entities: [Book],
     synchronize: config.dev === "true",
     logging: config.debug === "true",
     namingStrategy: new SnakeNamingStrategy()
