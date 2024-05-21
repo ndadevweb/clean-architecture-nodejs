@@ -1,0 +1,205 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"ReturnType_typeofGetBooksOutputDto.parse_": {
+				"items": {
+					"properties": {
+						"totalPages": {
+							"type": "number",
+							"format": "double"
+						},
+						"author": {
+							"type": "string"
+						},
+						"summary": {
+							"type": "string"
+						},
+						"title": {
+							"type": "string"
+						},
+						"id": {
+							"type": "string"
+						}
+					},
+					"type": "object"
+				},
+				"type": "array",
+				"description": "Obtain the return type of a function type"
+			},
+			"GetBooksOutputDto": {
+				"$ref": "#/components/schemas/ReturnType_typeofGetBooksOutputDto.parse_"
+			},
+			"ReturnType_typeofGetBookOutputDto.parse_": {
+				"properties": {
+					"totalPages": {
+						"type": "number",
+						"format": "double"
+					},
+					"author": {
+						"type": "string"
+					},
+					"summary": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Obtain the return type of a function type"
+			},
+			"GetBookOutputDto": {
+				"$ref": "#/components/schemas/ReturnType_typeofGetBookOutputDto.parse_"
+			},
+			"ReturnType_typeofPostBookInputDto.parse_": {
+				"properties": {
+					"totalPages": {
+						"type": "number",
+						"format": "double"
+					},
+					"author": {
+						"type": "string"
+					},
+					"summary": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Obtain the return type of a function type"
+			},
+			"PostBookInputDto": {
+				"$ref": "#/components/schemas/ReturnType_typeofPostBookInputDto.parse_"
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "clean-archi-nodejs",
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/books": {
+			"get": {
+				"operationId": "List",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBooksOutputDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Books"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "Create",
+				"responses": {
+					"201": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PostBookInputDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Books"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/PostBookInputDto"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/books/{id}": {
+			"get": {
+				"operationId": "GetById",
+				"responses": {
+					"200": {
+						"description": "",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetBookOutputDto"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Books"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"204": {
+						"description": ""
+					}
+				},
+				"tags": [
+					"Books"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "http://localhost:8000",
+			"description": "Localhost"
+		}
+	]
+}
