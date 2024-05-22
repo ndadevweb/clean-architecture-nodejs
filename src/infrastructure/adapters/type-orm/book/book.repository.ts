@@ -66,3 +66,5 @@ class TypeOrmRepository implements BookRepository {
         return deleteResult.affected === 1
     }
 }
+
+export default TypeOrmRepository

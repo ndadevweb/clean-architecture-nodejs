@@ -38,3 +38,18 @@ yarn add winston
 
 
 yarn add typeorm typeorm-naming-strategies pg
+
+
+
+yarn add -D env-cmd ts-node
+
+Renommer migration-name par create-table-book
+
+yarn run typeorm migration:generate -d src/infrastructure/adapters/type-orm/data-source.ts src/infrastructure/adapters/type-orm/migrations/migration-name
+
+
+
+
+
+
+yarn add tsyringe
