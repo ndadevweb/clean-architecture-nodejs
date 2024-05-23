@@ -1,5 +1,9 @@
 import { Controller, Route, Get, Post, Delete, SuccessResponse, Path, Body, Tags } from "tsoa"
 import { GetBookOutputDto, GetBooksOutputDto, PostBookInputDto } from "./dto"
+import CreateBookUseCase from '../../../../core/use-cases/create-book.use-case'
+import DeleteBookUseCase from '../../../../core/use-cases/delete-book.use-case'
+import GetBookUseCase from '../../../../core/use-cases/get-book.use-case'
+import ListBooksUseCase from '../../../../core/use-cases/list-books.use-cases'
 import { createBookCodec, getBookCodec } from "./book.codec"
 
 @Route('books')
@@ -12,7 +16,7 @@ export class BookController extends Controller {
     @Get()
     @SuccessResponse(200)
     async list(): Promise<GetBooksOutputDto> {
-        return []
+        return await new ListBooksUseCase().execute()
     }
 
     @Get('{id}')
@@ -23,13 +27,14 @@ export class BookController extends Controller {
         if(!bookId.success) {
             throw 'Invalid book id format'
         }
-        return {
-            id: 'mock id',
-            author: 'mock author',
-            summary: 'mock summary',
-            title: 'mock title',
-            totalPages: 100
+        
+        const book = await new GetBookUseCase().execute(bookId.data)
+
+        if(book === 'BOOK_NOT_FOUND') {
+            throw 'BOOK_NOT_FOUND'
         }
+
+        return book
     }
 
     @Post()
@@ -42,12 +47,8 @@ export class BookController extends Controller {
         if(!decodingResult.success) {
             throw decodingResult.error.toString()
         }
-        return {
-            author: 'mock author',
-            summary: 'mock summary',
-            title: 'mock title',
-            totalPages: 100
-        }
+        
+        return await new CreateBookUseCase().execute(decodingResult.data)
     }
 
     @Delete('{id}')
@@ -58,6 +59,11 @@ export class BookController extends Controller {
         if(!bookId.success) {
             throw 'Invalid book id format'
         }
-        // return
+        
+        const result = await new DeleteBookUseCase().execute(bookId.data)
+
+        if(result === 'BOOK_NOT_FOUND') {
+            throw 'BOOK_NOT_FOUND'
+        }
     }
 }
