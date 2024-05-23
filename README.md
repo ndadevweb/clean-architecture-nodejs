@@ -53,3 +53,8 @@ yarn run typeorm migration:generate -d src/infrastructure/adapters/type-orm/data
 
 
 yarn add tsyringe
+
+
+yarn add -D jest @types/jest ts-jest @types/node
+
+
