@@ -58,3 +58,8 @@ yarn add tsyringe
 yarn add -D jest @types/jest ts-jest @types/node
 
 
+
+yarn add jsonwebtoken
+
+
+yarn add -D @types/jsonwebtoken
