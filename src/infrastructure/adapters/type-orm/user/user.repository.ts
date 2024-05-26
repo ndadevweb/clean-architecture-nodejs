@@ -46,6 +46,16 @@ class TypeORMUserRepository implements UserRepository {
 
         return user ? user.toDomainEntity() : null
     }
+
+    async findById(id: string): Promise<ExistingUser | null> {
+        await isInitialize()
+
+        const user = await AppDataSource.getRepository(UserDBEntity).findOne({
+            where: { id }
+        })
+
+        return user ? user.toDomainEntity() : null
+    }
 }
 
 export default TypeORMUserRepository

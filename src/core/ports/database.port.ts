@@ -27,4 +27,6 @@ export interface UserRepository {
     create(args: CreateUserInput): Promise<ExistingUser | 'USER_ALREADY_EXISTS'>
 
     findByLoginAndPassword(login: string, password: string): Promise<ExistingUser | null>
+
+    findById(id: string): Promise<ExistingUser | null>
 }
