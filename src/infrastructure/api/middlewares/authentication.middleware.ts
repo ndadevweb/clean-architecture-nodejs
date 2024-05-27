@@ -5,7 +5,7 @@ import { UserRepository } from "../../../core/ports/database.port";
 import { ExistingUser, NotExistingUser } from "../../../core/entities/user.entity";
 
 const extractTokenFromRequest = (request: Request): "TOKEN_NOT_FOUND" | string => {
-    return (request.header('authorization') ?? '').replace('Bearer', '') || "TOKEN_NOT_FOUND"
+    return (request.header('authorization') ?? '').replace('Bearer ', '') || "TOKEN_NOT_FOUND"
 }
 
 const verifyAndDecodeJwt = (token: string): "INVALID_JWT" | { id: string } => {

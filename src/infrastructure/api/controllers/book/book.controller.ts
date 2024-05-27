@@ -1,4 +1,4 @@
-import { Controller, Route, Get, Post, Delete, SuccessResponse, Path, Body, Tags } from "tsoa"
+import { Controller, Route, Get, Post, Delete, SuccessResponse, Path, Body, Tags, Security } from "tsoa"
 import { GetBookOutputDto, GetBooksOutputDto, PostBookInputDto } from "./dto"
 import CreateBookUseCase from '../../../../core/use-cases/create-book.use-case'
 import DeleteBookUseCase from '../../../../core/use-cases/delete-book.use-case'
@@ -8,6 +8,7 @@ import { createBookCodec, getBookCodec } from "./book.codec"
 
 @Route('books')
 @Tags('Books')
+@Security('jwt')
 export class BookController extends Controller {
     constructor() {
         super()

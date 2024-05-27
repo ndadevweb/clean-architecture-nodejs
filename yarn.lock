@@ -3393,7 +3393,7 @@ pretty-format@^29.0.0, pretty-format@^29.7.0:
     ansi-styles "^5.0.0"
     react-is "^18.0.0"
 
-promise.any@^2.0.5:
+promise.any@^2.0.5, promise.any@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/promise.any/-/promise.any-2.0.6.tgz#e234bf0c5250368a580f2ae1fbd482e27d3a89b1"
   integrity sha512-Ew/MrPtTjiHnnki0AA2hS2o65JaZ5n+5pp08JSyWWUdeOGF4F41P+Dn+rdqnaOV/FTxhR6eBDX412luwn3th9g==
