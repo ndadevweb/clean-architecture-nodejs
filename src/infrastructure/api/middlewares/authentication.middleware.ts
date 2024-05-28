@@ -3,6 +3,7 @@ import { AuthenticatedContext } from "../../../core/ports/api.port";
 import { container } from "tsyringe";
 import { UserRepository } from "../../../core/ports/database.port";
 import { ExistingUser, NotExistingUser } from "../../../core/entities/user.entity";
+import { UnauthorizedError } from "../errro-handler";
 
 const extractTokenFromRequest = (request: Request): "TOKEN_NOT_FOUND" | string => {
     return (request.header('authorization') ?? '').replace('Bearer ', '') || "TOKEN_NOT_FOUND"
@@ -50,13 +51,13 @@ export async function expressAuthentication(
     const token = extractTokenFromRequest(request)
 
     if(token === 'TOKEN_NOT_FOUND') {
-        return Promise.reject(new Error("Missing authentication"))
+        return Promise.reject(new UnauthorizedError("Missing authentication"))
     }
 
     const user = await getUserFromJwt(token)
 
     if(user === 'INVALID_JWT' || user === 'UNKNOWN_USER') {
-        return Promise.reject('Invalid Token')
+        return Promise.reject(new UnauthorizedError("Invalid Token"))
     }
 
     return Promise.resolve(user)

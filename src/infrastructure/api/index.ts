@@ -6,6 +6,7 @@ import { RegisterRoutes } from "../../../build/routes";
 import swaggerDocument from "../../../build/swagger.json";
 
 import config from "./api.config";
+import { errorHandler } from "./errro-handler";
 
 
 
@@ -17,6 +18,8 @@ app.use(bodyParser.json());
 app.use('/docs', serve, setup(swaggerDocument));
 
 RegisterRoutes(app);
+
+app.use(errorHandler)
 
 const server = app.listen(config.port, () => {
   console.log(`Listening at http://localhost:${config.port}`);
